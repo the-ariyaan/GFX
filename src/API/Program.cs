@@ -1,9 +1,21 @@
+using Domain.Contracts.Repository;
+using Infrastructure.EntityFramework;
+using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+
+// Add repository dependencies
+services.AddDbContext<GreenFluxDbContext>();
+services.AddScoped<IGroupRepository, GroupRepository>();
+services.AddScoped<IConnectorRepository, ConnectorRepository>();
+services.AddScoped<IChargeStationRepository, ChargeStationRepository>();
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Configure Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,10 +28,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<GreenFluxDbContext>();
+    dataContext.Database.Migrate();
+}
+
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
