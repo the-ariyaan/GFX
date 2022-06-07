@@ -13,9 +13,9 @@ public class GreenFluxDbContext : DbContext
         Configuration = configuration;
     }
 
-    public virtual ICollection<ChargeStation> ChargeStations { get; set; }
-    public virtual ICollection<Connector> Connectors { get; set; }
-    public virtual ICollection<Group> Groups { get; set; }
+    public virtual DbSet<ChargeStation> ChargeStations { get; set; }
+    public virtual DbSet<Connector> Connectors { get; set; }
+    public virtual DbSet<Group> Groups { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -25,8 +25,18 @@ public class EntityRepositoryBase<TEntity, TKey, TDbContext> : RepositoryBase<TE
 
     public virtual async Task<TEntity> GetAsync(TKey id)
     {
-        return await DbSet.FindAsync(id);
+        try
+        {
+            return await DbSet.FindAsync(id);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
+
 
     public virtual async Task<TEntity> CreateAsync(TEntity entity)
     {
@@ -41,16 +51,16 @@ public class EntityRepositoryBase<TEntity, TKey, TDbContext> : RepositoryBase<TE
         await SaveAsync();
     }
 
+    public int Save()
+    {
+        return DbContext.SaveChanges();
+    }
+
     public virtual async Task<TEntity> UpdateAsync(TEntity entity)
     {
         DbSet.Update(entity);
         await SaveAsync();
         return entity;
-    }
-
-    public int Save()
-    {
-        return DbContext.SaveChanges();
     }
 
     public async Task<int> SaveAsync()

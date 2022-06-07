@@ -1,5 +1,7 @@
 using Domain.Contracts.Repository;
+using Domain.Contracts.Services;
 using Domain.Entities;
+using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -7,18 +9,28 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class GroupController : ControllerBase
 {
-    private readonly ILogger<GroupController> _logger;
-    private readonly IGroupRepository _groupRepository;
+    private readonly IGroupService _service;
 
-    public GroupController(ILogger<GroupController> logger, IGroupRepository groupRepository)
+    public GroupController(IGroupService service)
     {
-        _logger = logger;
-        _groupRepository = groupRepository;
+        _service = service;
     }
 
-    [HttpGet("{id:long}")]
-    public async Task<Group> Get(long id)
+    [HttpPost]
+    public async Task<Group> Create([FromBody] Group group)
     {
-        return await _groupRepository.GetAsync(id);
+        return await _service.CreateAsync(group);
+    }
+
+    [HttpPut]
+    public async Task<Group> Update([FromBody] Group group)
+    {
+        return await _service.UpdateAsync(group);
+    }
+
+    [HttpDelete("{id:long}")]
+    public async Task Remove(long id)
+    {
+        await _service.RemoveAsync(id);
     }
 }

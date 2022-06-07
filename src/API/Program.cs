@@ -1,4 +1,6 @@
 using Domain.Contracts.Repository;
+using Domain.Contracts.Services;
+using Domain.Services;
 using Infrastructure.EntityFramework;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,9 @@ services.AddDbContext<GreenFluxDbContext>();
 services.AddScoped<IGroupRepository, GroupRepository>();
 services.AddScoped<IConnectorRepository, ConnectorRepository>();
 services.AddScoped<IChargeStationRepository, ChargeStationRepository>();
+services.AddScoped<IGroupService, GroupService>();
+services.AddScoped<IChargeStationService, ChargeStationService>();
+services.AddScoped<IConnectorService, ConnectorService>();
 
 // Add services to the container.
 builder.Services.AddControllers();
