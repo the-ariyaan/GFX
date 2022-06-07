@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class ConnectorRepository : EntityRepositoryBase<Connector, GreenFluxDbContext>, IConnectorRepository
+public class ConnectorRepository : BaseRepository<Connector, GreenFluxDbContext>, IConnectorRepository
 {
     public ConnectorRepository(GreenFluxDbContext dbContext) : base(dbContext)
     {

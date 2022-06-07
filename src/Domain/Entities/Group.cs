@@ -27,6 +27,5 @@ public class Group
     /// <summary>
     /// Charge stations in group
     /// </summary>
-    [JsonIgnore]
     public Collection<ChargeStation> ChargeStations { get; set; } = new();
 }

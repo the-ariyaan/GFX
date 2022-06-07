@@ -5,7 +5,7 @@ using Infrastructure.Repositories.Base;
 
 namespace Infrastructure.Repositories;
 
-public class ChargeStationRepository : EntityRepositoryBase<ChargeStation, GreenFluxDbContext>,
+public class ChargeStationRepository : BaseRepository<ChargeStation, GreenFluxDbContext>,
     IChargeStationRepository
 {
     public ChargeStationRepository(GreenFluxDbContext dbContext) : base(dbContext)

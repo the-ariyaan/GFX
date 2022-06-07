@@ -16,14 +16,20 @@ public class ChargeStationController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<ChargeStation>> GetAll()
+    {
+        return await _service.GetAllAsync();
+    }
+
     [HttpPost]
-    public async Task<ChargeStation> Create([FromBody] ChargeStation? chargeStation)
+    public async Task<ChargeStation> Create([FromBody] ChargeStation chargeStation)
     {
         return await _service.CreateAsync(chargeStation);
     }
 
     [HttpPatch]
-    public async Task<ChargeStation?> Update([FromBody] ChargeStation? chargeStation)
+    public async Task<ChargeStation?> Update([FromBody] ChargeStation chargeStation)
     {
         return await _service.UpdateAsync(chargeStation);
     }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class GroupRepository : EntityRepositoryBase<Group, GreenFluxDbContext>, IGroupRepository
+public class GroupRepository : BaseRepository<Group, GreenFluxDbContext>, IGroupRepository
 {
     public GroupRepository(GreenFluxDbContext dbContext) : base(dbContext)
     {

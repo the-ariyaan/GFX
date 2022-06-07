@@ -15,27 +15,12 @@ public class ChargeStationService : IChargeStationService
         _groupRepository = groupRepository;
     }
 
-    public async Task RemoveAsync(long id)
+    public async Task<IEnumerable<ChargeStation>> GetAllAsync()
     {
-        var data = await _repository.GetAsync(id);
-        if (data == null)
-            throw new ArgumentException($"Charge Station with Id{id} not found.");
-
-        await _repository.RemoveAsync(data);
+        return await _repository.GetAllAsync();
     }
 
-    public async Task<ChargeStation?> UpdateAsync(ChargeStation? chargeStation)
-    {
-        var data = await _repository.GetAsync(chargeStation.Id);
-        if (data == null)
-            throw new ArgumentException($"Charge Station with Id{chargeStation.Id} not found.");
-        if (chargeStation.GroupId == 0)
-            throw new ArgumentException("The Charge Station cannot exist in the domain without Group");
-
-        return await _repository.UpdateAsync(chargeStation);
-    }
-
-    public async Task<ChargeStation> CreateAsync(ChargeStation? chargeStation)
+    public async Task<ChargeStation> CreateAsync(ChargeStation chargeStation)
     {
         if (chargeStation.GroupId == 0)
             throw new ArgumentException("The Charge Station cannot exist in the domain without Group");
@@ -46,5 +31,25 @@ public class ChargeStationService : IChargeStationService
             throw new Exception("Maximum charge stations for a group is 5, so you can not add more charge stations.");
 
         return await _repository.CreateAsync(chargeStation);
+    }
+
+    public async Task<ChargeStation?> UpdateAsync(ChargeStation chargeStation)
+    {
+        var data = await _repository.GetAsync(chargeStation.Id);
+        if (data == null)
+            throw new ArgumentException($"Charge Station with Id{chargeStation.Id} not found.");
+        if (chargeStation.GroupId == 0)
+            throw new ArgumentException("The Charge Station cannot exist in the domain without Group");
+
+        return await _repository.UpdateAsync(chargeStation);
+    }
+
+    public async Task RemoveAsync(long id)
+    {
+        var data = await _repository.GetAsync(id);
+        if (data == null)
+            throw new ArgumentException($"Charge Station with Id{id} not found.");
+
+        await _repository.RemoveAsync(data);
     }
 }

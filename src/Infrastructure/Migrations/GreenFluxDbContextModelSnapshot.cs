@@ -29,9 +29,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<int>("EntityState")
-                        .HasColumnType("int");
-
                     b.Property<long>("GroupId")
                         .HasColumnType("bigint");
 
@@ -57,9 +54,6 @@ namespace Infrastructure.Migrations
                     b.Property<long>("ChargeStationId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("EntityState")
-                        .HasColumnType("int");
-
                     b.Property<int>("MaxCurrent")
                         .HasColumnType("int");
 
@@ -79,9 +73,6 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EntityState")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

@@ -15,8 +15,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
-                    EntityState = table.Column<int>(type: "int", nullable: false)
+                    Capacity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,8 +29,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GroupId = table.Column<long>(type: "bigint", nullable: false),
-                    EntityState = table.Column<int>(type: "int", nullable: false)
+                    GroupId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,8 +49,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaxCurrent = table.Column<int>(type: "int", nullable: false),
-                    ChargeStationId = table.Column<long>(type: "bigint", nullable: false),
-                    EntityState = table.Column<int>(type: "int", nullable: false)
+                    ChargeStationId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

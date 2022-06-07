@@ -4,7 +4,8 @@ namespace Domain.Contracts.Services;
 
 public interface IChargeStationService
 {
-    Task<ChargeStation> CreateAsync(ChargeStation? chargeStation);
-    Task<ChargeStation?> UpdateAsync(ChargeStation? chargeStation);
+    Task<IEnumerable<ChargeStation>> GetAllAsync();
+    Task<ChargeStation> CreateAsync(ChargeStation chargeStation);
+    Task<ChargeStation?> UpdateAsync(ChargeStation chargeStation);
     Task RemoveAsync(long id);
 }

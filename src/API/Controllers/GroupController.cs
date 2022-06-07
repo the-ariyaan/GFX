@@ -1,7 +1,5 @@
-using Domain.Contracts.Repository;
 using Domain.Contracts.Services;
 using Domain.Entities;
-using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -16,6 +14,12 @@ public class GroupController : ControllerBase
         _service = service;
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<Group>> GetAll()
+    {
+        return await _service.GetAllAsync();
+    }
+
     [HttpPost]
     public async Task<Group> Create([FromBody] Group group)
     {
@@ -23,7 +27,7 @@ public class GroupController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<Group?> Update([FromBody] Group? group)
+    public async Task<Group?> Update([FromBody] Group group)
     {
         return await _service.UpdateAsync(group);
     }

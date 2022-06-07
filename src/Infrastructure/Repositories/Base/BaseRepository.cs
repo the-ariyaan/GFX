@@ -1,16 +1,15 @@
 using Domain.Contracts.Repository;
-using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Base;
 
-public class EntityRepositoryBase<TEntity, TDbContext> : IBaseRepository<TEntity>
+public class BaseRepository<TEntity, TDbContext> : IBaseRepository<TEntity>
     where TEntity : class
     where TDbContext : DbContext
 {
     protected TDbContext DbContext { get; }
 
-    protected EntityRepositoryBase(TDbContext dbContext)
+    protected BaseRepository(TDbContext dbContext)
     {
         DbContext = dbContext;
     }
@@ -19,6 +18,15 @@ public class EntityRepositoryBase<TEntity, TDbContext> : IBaseRepository<TEntity
     /// DBSet of Entity
     /// </summary>
     public DbSet<TEntity> DbSet => DbContext.Set<TEntity>();
+
+    /// <summary>
+    /// Returns all entities from database
+    /// </summary>
+    /// <returns>List of <see cref="TEntity"/></returns>
+    public async Task<IEnumerable<TEntity>> GetAllAsync()
+    {
+        return await DbSet.ToListAsync();
+    }
 
     /// <summary>
     /// Looks for an entity by its Id

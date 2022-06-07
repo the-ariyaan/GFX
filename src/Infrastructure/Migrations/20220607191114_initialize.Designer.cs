@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(GreenFluxDbContext))]
-    [Migration("20220519191959_initialize")]
+    [Migration("20220607191114_initialize")]
     partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,9 +30,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<int>("EntityState")
-                        .HasColumnType("int");
 
                     b.Property<long>("GroupId")
                         .HasColumnType("bigint");
@@ -59,9 +56,6 @@ namespace Infrastructure.Migrations
                     b.Property<long>("ChargeStationId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("EntityState")
-                        .HasColumnType("int");
-
                     b.Property<int>("MaxCurrent")
                         .HasColumnType("int");
 
@@ -81,9 +75,6 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EntityState")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

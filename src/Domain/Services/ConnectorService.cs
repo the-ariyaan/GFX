@@ -15,13 +15,23 @@ public class ConnectorService : IConnectorService
         _groupRepository = groupRepository;
     }
 
-    public async Task RemoveAsync(long id)
+    public async Task<IEnumerable<Connector>> GetAllAsync()
     {
-        var connector = await _repository.GetAsync(id);
-        if (connector == null)
-            throw new ArgumentException($"Connector with Id{id} not found.");
+        return await _repository.GetAllAsync();
+    }
 
-        await _repository.RemoveAsync(connector);
+    public async Task<Connector> CreateAsync(Connector connector)
+    {
+        if (connector.ChargeStationId == 0)
+            throw new ArgumentException("A Connector cannot exist in the domain without a Charge Station.");
+
+        var group = _groupRepository.GetByStationIdAsync(connector.ChargeStationId);
+
+        if (group.Capacity < group.ChargeStations.Sum(c => c.Connectors.Sum(x => x.MaxCurrent)))
+            throw new ArgumentException(
+                "The capacity of the Group is not enough to add new connector");
+
+        return await _repository.CreateAsync(connector);
     }
 
     public async Task<Connector> UpdateAsync(Connector connector)
@@ -40,17 +50,12 @@ public class ConnectorService : IConnectorService
         return await _repository.UpdateAsync(connector);
     }
 
-    public async Task<Connector> CreateAsync(Connector connector)
+    public async Task RemoveAsync(long id)
     {
-        if (connector.ChargeStationId == 0)
-            throw new ArgumentException("A Connector cannot exist in the domain without a Charge Station.");
+        var connector = await _repository.GetAsync(id);
+        if (connector == null)
+            throw new ArgumentException($"Connector with Id{id} not found.");
 
-        var group = _groupRepository.GetByStationIdAsync(connector.ChargeStationId);
-
-        if (group.Capacity < group.ChargeStations.Sum(c => c.Connectors.Sum(x => x.MaxCurrent)))
-            throw new ArgumentException(
-                "The capacity of the Group is not enough to add new connector");
-
-        return await _repository.CreateAsync(connector);
+        await _repository.RemoveAsync(connector);
     }
 }
