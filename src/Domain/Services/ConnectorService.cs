@@ -31,8 +31,8 @@ public class ConnectorService : IConnectorService
             throw new ArgumentException($"Connector with Id{connector.Id} not found.");
         if (connector.ChargeStationId == 0)
             throw new ArgumentException("A Connector cannot exist in the domain without a Charge Station.");
-        var group = data.ChargeStation.Group;
 
+        var group = data.ChargeStation.Group;
         if (group.Capacity < group.ChargeStations.Sum(c => c.Connectors.Sum(x => x.MaxCurrent)))
             throw new ArgumentException(
                 "The capacity in Amps of a Group should always be great or equal to the sum of the Max current in Amps of the Connector of all Charge Stations in the Group.");

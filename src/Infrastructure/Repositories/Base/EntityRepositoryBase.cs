@@ -1,43 +1,40 @@
+using Domain.Contracts.Repository;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Base;
 
-public class EntityRepositoryBase<TEntity, TDbContext> : EntityRepositoryBase<TEntity, long, TDbContext>,
-    IEntityRepository<TEntity>
-    where TEntity : class, IEntity
+public class EntityRepositoryBase<TEntity, TDbContext> : IBaseRepository<TEntity>
+    where TEntity : class
     where TDbContext : DbContext
 {
-    public EntityRepositoryBase(TDbContext dbContext) : base(dbContext)
-    {
-    }
-}
+    protected TDbContext DbContext { get; }
 
-public class EntityRepositoryBase<TEntity, TKey, TDbContext> : RepositoryBase<TEntity, TKey, TDbContext>,
-    IEntityRepository<TEntity, TKey>
-    where TEntity : class, IEntity<TKey>
-    where TDbContext : DbContext
-{
-    public EntityRepositoryBase(TDbContext dbContext)
-        : base(dbContext)
+    protected EntityRepositoryBase(TDbContext dbContext)
     {
+        DbContext = dbContext;
     }
 
-    public virtual async Task<TEntity> GetAsync(TKey id)
-    {
-        try
-        {
-            return await DbSet.FindAsync(id);
+    /// <summary>
+    /// DBSet of Entity
+    /// </summary>
+    public DbSet<TEntity> DbSet => DbContext.Set<TEntity>();
 
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+    /// <summary>
+    /// Looks for an entity by its Id
+    /// </summary>
+    /// <param name="id">Id of the entity</param>
+    /// <returns><see cref="TEntity"/> object</returns>
+    public virtual async Task<TEntity?> GetAsync(long id)
+    {
+        return await DbSet.FindAsync(id);
     }
 
-
+    /// <summary>
+    /// Inserts an entity to database
+    /// </summary>
+    /// <param name="entity"><see cref="TEntity"/> object to be inserted</param>
+    /// <returns></returns>
     public virtual async Task<TEntity> CreateAsync(TEntity entity)
     {
         DbSet.Add(entity);
@@ -45,17 +42,21 @@ public class EntityRepositoryBase<TEntity, TKey, TDbContext> : RepositoryBase<TE
         return entity;
     }
 
+    /// <summary>
+    /// Removes an entity from database
+    /// </summary>
+    /// <param name="entity"><see cref="TEntity"/> object to be removed</param>
     public async Task RemoveAsync(TEntity entity)
     {
         DbSet.Remove(entity);
         await SaveAsync();
     }
 
-    public int Save()
-    {
-        return DbContext.SaveChanges();
-    }
-
+    /// <summary>
+    /// Updates an entity
+    /// </summary>
+    /// <param name="entity"><see cref="TEntity"/> object to be updated</param>
+    /// <returns></returns>
     public virtual async Task<TEntity> UpdateAsync(TEntity entity)
     {
         DbSet.Update(entity);
@@ -63,6 +64,10 @@ public class EntityRepositoryBase<TEntity, TKey, TDbContext> : RepositoryBase<TE
         return entity;
     }
 
+    /// <summary>
+    /// Saves changes
+    /// </summary>
+    /// <returns>Quantity of changes(rows affected)</returns>
     public async Task<int> SaveAsync()
     {
         return await DbContext.SaveChangesAsync();

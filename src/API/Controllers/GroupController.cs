@@ -23,7 +23,7 @@ public class GroupController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<Group> Update([FromBody] Group group)
+    public async Task<Group?> Update([FromBody] Group? group)
     {
         return await _service.UpdateAsync(group);
     }

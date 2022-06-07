@@ -2,7 +2,7 @@ using Domain.Entities;
 
 namespace Domain.Contracts.Repository;
 
-public interface IConnectorRepository : IEntityRepository<Connector>
+public interface IConnectorRepository : IBaseRepository<Connector>
 {
     Task<Connector?> GetConnectorIncludingGroupGroup(long id);
 }

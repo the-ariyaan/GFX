@@ -17,13 +17,13 @@ public class ChargeStationController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ChargeStation> Create([FromBody] ChargeStation chargeStation)
+    public async Task<ChargeStation> Create([FromBody] ChargeStation? chargeStation)
     {
         return await _service.CreateAsync(chargeStation);
     }
 
     [HttpPatch]
-    public async Task<ChargeStation> Update([FromBody] ChargeStation chargeStation)
+    public async Task<ChargeStation?> Update([FromBody] ChargeStation? chargeStation)
     {
         return await _service.UpdateAsync(chargeStation);
     }

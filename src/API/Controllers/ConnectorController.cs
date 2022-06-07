@@ -17,13 +17,13 @@ public class ConnectorController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<Connector> Create([FromBody] Connector chargeStation)
+    public async Task<Connector> Create([FromBody] Connector? chargeStation)
     {
         return await _service.CreateAsync(chargeStation);
     }
 
     [HttpPatch]
-    public async Task<Connector> Update([FromBody] Connector chargeStation)
+    public async Task<Connector?> Update([FromBody] Connector? chargeStation)
     {
         return await _service.UpdateAsync(chargeStation);
     }

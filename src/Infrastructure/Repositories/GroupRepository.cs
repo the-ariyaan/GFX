@@ -1,7 +1,5 @@
-using System.Linq.Expressions;
 using Domain.Contracts.Repository;
 using Domain.Entities;
-using Domain.Utils;
 using Infrastructure.EntityFramework;
 using Infrastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +10,6 @@ public class GroupRepository : EntityRepositoryBase<Group, GreenFluxDbContext>, 
 {
     public GroupRepository(GreenFluxDbContext dbContext) : base(dbContext)
     {
-    }
-
-    public Task<EntityQueryable<Group>> QueryWithCountNoTracking(Expression<Func<Group, bool>> predicate = null)
-    {
-        throw new NotImplementedException();
     }
 
     public Group GetByStationIdAsync(long id)

@@ -24,7 +24,7 @@ public class ChargeStationService : IChargeStationService
         await _repository.RemoveAsync(data);
     }
 
-    public async Task<ChargeStation> UpdateAsync(ChargeStation chargeStation)
+    public async Task<ChargeStation?> UpdateAsync(ChargeStation? chargeStation)
     {
         var data = await _repository.GetAsync(chargeStation.Id);
         if (data == null)
@@ -35,7 +35,7 @@ public class ChargeStationService : IChargeStationService
         return await _repository.UpdateAsync(chargeStation);
     }
 
-    public async Task<ChargeStation> CreateAsync(ChargeStation chargeStation)
+    public async Task<ChargeStation> CreateAsync(ChargeStation? chargeStation)
     {
         if (chargeStation.GroupId == 0)
             throw new ArgumentException("The Charge Station cannot exist in the domain without Group");
