@@ -5,6 +5,11 @@ namespace Domain.DTOs;
 public class GroupDTO
 {
     /// <summary>
+    /// Group Id
+    /// </summary>
+    public long Id { get; set; }
+
+    /// <summary>
     /// Group Name
     /// </summary>
     public string Name { get; set; }

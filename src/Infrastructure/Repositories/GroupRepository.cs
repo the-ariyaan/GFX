@@ -25,4 +25,13 @@ public class GroupRepository : BaseRepository<Group, GreenFluxDbContext>, IGroup
     {
         return await DbContext.ChargeStations.CountAsync(c => c.GroupId == id);
     }
+
+    public async Task<int> GetChargeStationsCurrentAsync(long id)
+    {
+        var group = await DbContext.Groups.Include(x => x.ChargeStations).FirstOrDefaultAsync(c => c.Id == id);
+        if (group == null)
+            throw new Exception("Group not found.");
+        var result = group.ChargeStations.Sum(c => c.Connectors.Sum(x => x.MaxCurrent));
+        return result;
+    }
 }

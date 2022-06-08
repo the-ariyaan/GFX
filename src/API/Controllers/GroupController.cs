@@ -1,4 +1,5 @@
 using Domain.Contracts.Services;
+using Domain.DTOs;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,19 +16,19 @@ public class GroupController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Group>> GetAll()
+    public async Task<IEnumerable<GroupDTO>> GetAll()
     {
         return await _service.GetAllAsync();
     }
 
     [HttpPost]
-    public async Task<Group> Create([FromBody] Group group)
+    public async Task<GroupDTO> Create([FromBody] GroupDTO group)
     {
         return await _service.CreateAsync(group);
     }
 
-    [HttpPut]
-    public async Task<Group?> Update([FromBody] Group group)
+    [HttpPatch]
+    public async Task<GroupDTO> Update([FromBody] GroupDTO group)
     {
         return await _service.UpdateAsync(group);
     }

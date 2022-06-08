@@ -1,3 +1,5 @@
+using Api;
+using AutoMapper;
 using Domain.Contracts.Repository;
 using Domain.Contracts.Services;
 using Domain.Services;
@@ -23,6 +25,10 @@ builder.Services.AddControllers();
 // Configure Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure AutoMapper
+var config = new MapperConfiguration(cfg => { cfg.AddProfile(new MappingProfile()); });
+builder.Services.AddSingleton(config.CreateMapper());
 
 var app = builder.Build();
 

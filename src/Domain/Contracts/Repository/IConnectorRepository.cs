@@ -4,5 +4,5 @@ namespace Domain.Contracts.Repository;
 
 public interface IConnectorRepository : IBaseRepository<Connector>
 {
-    Task<Connector?> GetConnectorIncludingGroupGroup(long id);
+    Task<Connector?> GetConnectorIncludingGroup(long id);
 }

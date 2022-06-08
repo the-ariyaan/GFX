@@ -1,11 +1,12 @@
+using Domain.DTOs;
 using Domain.Entities;
 
 namespace Domain.Contracts.Services;
 
 public interface IConnectorService
 {
-    Task<IEnumerable<Connector>> GetAllAsync();
-    Task<Connector> CreateAsync(Connector group);
-    Task<Connector> UpdateAsync(Connector connector);
+    Task<IEnumerable<ConnectorDTO>> GetAllAsync();
+    Task<ConnectorDTO> CreateAsync(ConnectorDTO group);
+    Task<ConnectorDTO> UpdateAsync(ConnectorDTO connector);
     Task RemoveAsync(long id);
 }

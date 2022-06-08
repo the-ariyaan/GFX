@@ -13,7 +13,7 @@ public class ConnectorRepository : BaseRepository<Connector, GreenFluxDbContext>
     {
     }
 
-    public async Task<Connector?> GetConnectorIncludingGroupGroup(long id)
+    public async Task<Connector?> GetConnectorIncludingGroup(long id)
     {
         return await DbContext.Connectors
             .Include(x => x.ChargeStation)

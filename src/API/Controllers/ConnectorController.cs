@@ -1,5 +1,6 @@
 using Domain.Contracts.Repository;
 using Domain.Contracts.Services;
+using Domain.DTOs;
 using Domain.Entities;
 using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,19 +18,19 @@ public class ConnectorController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Connector>> GetAll()
+    public async Task<IEnumerable<ConnectorDTO>> GetAll()
     {
         return await _service.GetAllAsync();
     }
 
     [HttpPost]
-    public async Task<Connector> Create([FromBody] Connector chargeStation)
+    public async Task<ConnectorDTO> Create([FromBody] ConnectorDTO chargeStation)
     {
         return await _service.CreateAsync(chargeStation);
     }
 
     [HttpPatch]
-    public async Task<Connector?> Update([FromBody] Connector chargeStation)
+    public async Task<ConnectorDTO> Update([FromBody] ConnectorDTO chargeStation)
     {
         return await _service.UpdateAsync(chargeStation);
     }

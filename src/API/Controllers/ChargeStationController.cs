@@ -1,5 +1,6 @@
 using Domain.Contracts.Repository;
 using Domain.Contracts.Services;
+using Domain.DTOs;
 using Domain.Entities;
 using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,19 +18,19 @@ public class ChargeStationController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<ChargeStation>> GetAll()
+    public async Task<IEnumerable<ChargeStationDTO>> GetAll()
     {
         return await _service.GetAllAsync();
     }
 
     [HttpPost]
-    public async Task<ChargeStation> Create([FromBody] ChargeStation chargeStation)
+    public async Task<ChargeStationDTO> Create([FromBody] ChargeStationDTO chargeStation)
     {
         return await _service.CreateAsync(chargeStation);
     }
 
     [HttpPatch]
-    public async Task<ChargeStation?> Update([FromBody] ChargeStation chargeStation)
+    public async Task<ChargeStationDTO> Update([FromBody] ChargeStationDTO chargeStation)
     {
         return await _service.UpdateAsync(chargeStation);
     }
