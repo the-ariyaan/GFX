@@ -12,9 +12,10 @@ public class GroupRepository : BaseRepository<Group, GreenFluxDbContext>, IGroup
     {
     }
 
-    public Group GetByStationIdAsync(long id)
+    public async Task<Group> GetByStationIdAsync(long id)
     {
-        var station = DbContext.ChargeStations.Include(x => x.Group).FirstOrDefault(c => c.Id == id);
+        var station = await DbContext.ChargeStations.Include(x => x.Group).FirstOrDefaultAsync(c => c.Id == id);
+        var stations = DbContext.ChargeStations.ToList();
         if (station == null)
             throw new Exception("Station Id not found.");
 

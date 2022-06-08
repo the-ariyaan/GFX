@@ -30,7 +30,7 @@ public class ConnectorService : IConnectorService
         if (connector.ChargeStationId == 0)
             throw new ArgumentException("A Connector cannot exist in the domain without a Charge Station.");
 
-        var group = _groupRepository.GetByStationIdAsync(connector.ChargeStationId);
+        var group = await _groupRepository.GetByStationIdAsync(connector.ChargeStationId);
         var groupChargeStationCount = await _groupRepository.GetChargeStationsCountAsync(group.Id);
         if (groupChargeStationCount >= 5)
             throw new Exception("Maximum charge stations for a group is 5, so you can not add more charge stations.");

@@ -4,7 +4,7 @@ namespace Domain.Contracts.Repository;
 
 public interface IGroupRepository : IBaseRepository<Group>
 {
-    Group GetByStationIdAsync(long connectorChargeStationId);
+    Task<Group>  GetByStationIdAsync(long connectorChargeStationId);
     Task<int> GetChargeStationsCountAsync(long chargeStationGroupId);
     Task<int> GetChargeStationsCurrentAsync(long chargeStationGroupId);
 }

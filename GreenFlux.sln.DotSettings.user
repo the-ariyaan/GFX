@@ -1,0 +1,31 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=39caaa6b_002D9882_002D4e52_002Dab62_002Db422cc7ab5fd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAll_Will_Return_All_Items_In_Database" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3adc60cd_002Dc666_002D4582_002Da21d_002D2e1191cb2fce/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Create_Will_Add_New_Item_To_Database" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d67c377e_002Dab06_002D4a2f_002D956b_002D88a0ad4b429d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Create_Will_Add_New_Item_To_Database #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;Not&gt;
+      &lt;And&gt;
+        &lt;Project Location="/Users/ariyan/projects/GreenFlux/tests/API.Tests" Presentation="&amp;lt;tests&amp;gt;\&amp;lt;API.Tests&amp;gt;" /&gt;
+        &lt;Namespace&gt;API.Tests.Integration&lt;/Namespace&gt;
+      &lt;/And&gt;
+    &lt;/Not&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests.GetAll_Will_Return_All_Items_In_Database&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests.Create_Will_Add_New_Item_To_Database&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests.Charge_Station_Should_Have_At_Least_One_Connector&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests.Throrw_Error_When_Maximum_Charge_Stations_For_A_Group_Is_More_Than_5&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests.Remove_Should_Delete_One_Item_From_Database&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests.Remove_Should_Throw_Exception_When_Id_Is_Invalid&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.ChargeStationTests&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::B4F46091-D043-4B7F-8FE3-8F060F0F77D9::net6.0::API.Tests.Integration.GroupTests&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

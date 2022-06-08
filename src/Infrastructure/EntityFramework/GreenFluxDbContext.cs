@@ -6,12 +6,15 @@ namespace Infrastructure.EntityFramework;
 
 public class GreenFluxDbContext : DbContext
 {
-    protected readonly IConfiguration Configuration;
+    protected readonly IConfiguration _configuration;
 
-    public GreenFluxDbContext(IConfiguration configuration)
+    public GreenFluxDbContext(DbContextOptions<GreenFluxDbContext> dbContextOptions, IConfiguration? configuration) :
+        base(
+            dbContextOptions)
     {
-        Configuration = configuration;
+        _configuration = configuration!;
     }
+
 
     public virtual DbSet<ChargeStation> ChargeStations { get; set; }
     public virtual DbSet<Connector> Connectors { get; set; }
@@ -27,6 +30,7 @@ public class GreenFluxDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         // connect to sql server with connection string from app settings
-        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+        if (_configuration != null)
+            options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
     }
 }
