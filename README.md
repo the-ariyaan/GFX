@@ -1,14 +1,12 @@
-# GreenFlux Smart Charging Assignment
+# Smart Charging
 
 This repository holds an implementation for
-the [GreenFlux](https://www.greenflux.com/)'s assignment.
+the Smart Charging.
 
 ## About
 
 This is a try to domain driven approach, And in this project I implemented everything that can show a simple
-intruduction of my codding skills.
-
-I wrote some unit tests, and some integration tests, and more...
+intruduction of DDD, unit and integration tests, FluentValidation, and more.
 
 ## How to run
 
